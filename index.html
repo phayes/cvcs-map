@@ -22,9 +22,15 @@
     //var googleLayer = new L.Google('TERRAIN');
     //map.addLayer(googleLayer, true);
 
-    var layer   = L.mapbox.tileLayer('phayes.CVCS').addTo(map);
-    var grid    = L.mapbox.gridLayer('phayes.CVCS').addTo(map);
-    var control = L.mapbox.gridControl(grid).addTo(map);
+    var sei_layer   = L.mapbox.tileLayer('phayes.CVCS_SEI').addTo(map);
+    var pro_layer   = L.mapbox.tileLayer('phayes.CVCS').addTo(map);
+
+    var sei_grid    = L.mapbox.gridLayer('phayes.CVCS_SEI').addTo(map);
+    var pro_grid    = L.mapbox.gridLayer('phayes.CVCS').addTo(map);
+
+    var sei_control = L.mapbox.gridControl(sei_grid).addTo(map);
+    var pro_control = L.mapbox.gridControl(pro_grid).addTo(map);
+    
 
     </script>
   </body>
