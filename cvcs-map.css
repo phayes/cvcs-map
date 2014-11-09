@@ -1,0 +1,61 @@
+#legend {
+	position:absolute;
+	bottom:20px;
+	right:20px;
+	height:300px;
+	width:300px;
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 3px 3px 3px #888888;
+	padding:6px 20px 20px 20px;
+}
+
+.colourball {
+	font-size: 2em;
+	vertical-align: middle;
+}
+
+.legend-text {
+	position: relative;
+	top:2px;
+	margin-left: 5px;
+}
+
+.legend-line {
+	margin-bottom:-15px;
+}
+
+.legend-desc {
+	font-size: smaller;
+}
+
+.leaflet-control-attribution {
+	display:none;
+}
+
+#protected-colourball {
+	color: #9fc266;
+}
+
+#intact-sei-colourball {
+	color: #f0d940;
+}
+
+#degraded-sei-colourball {
+	color: #eca731;
+}
+
+#lost-sei-colourball {
+	color: #ce4237;
+}
+
+#fc-loss-colourball {
+	color: #ff0000;
+}
+
+#fc-switcher {
+	margin-top: 25px;
+}
+
+#fc-legend {
+	display:none;
+}

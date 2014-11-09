@@ -4,10 +4,12 @@
     <meta charset=utf-8 />
     <title>CVCS Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.2/mapbox.css' rel='stylesheet' />
-    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script>
     <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+    <link href='cvcs-map.css' rel='stylesheet' />
     <style>
       body { margin:0; padding:0; }
       #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -15,23 +17,106 @@
   </head>
   <body>
     <div id='map'></div>
+    <div id='legend'>
+      <h4 class='legend-desc'>Comox Valley Sensitive Ecosystem Inventory</h4>
+
+      <div id='sei-legend'>
+        <div id='sei-desc' class='legend-desc'>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a small introductory paragraph about this map. We should keep it fairly small and terse to give ample space to the map.
+          </p>
+          <p>
+            To learn more visit <a href='http://www.cvconservationstrategy.org'>www.cvconservationstrategy.org</a>
+          </p>
+        </div>
+        <div id='protected' class='legend-line'>
+          <span id='protected-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Park / Protected</span>
+        </div>
+        <div id='intact-sei' class='legend-line'> 
+          <span id='intact-sei-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Sensitive Ecosystem - Intact</span>
+        </div>
+        <div id='degraded-sei' class='legend-line'>
+          <span id='degraded-sei-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Sensitive Ecosystem - Degraded</span>
+        </div>
+        <div id='lost-sei' class='legend-line'>
+          <span id='lost-sei-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Sensitive Ecosystem - Lost</span>
+        </div>
+      </div>
+
+      <div id='fc-legend'>
+        <div id='fc-desc' class='legend-desc'>
+          <p>
+            Results from time-series analysis of 654,178 Landsat images in characterizing forest extent and change, 2000–2012.
+            ‘Forest Loss’ is defined as a stand-replacement disturbance, or a change from a forest to non-forest state.
+          </p>
+          <p>Global Forest Change published by Hansen, Potapov, Moore, Hancher et al. </p>
+          <p><a href='http://earthenginepartners.appspot.com/science-2013-global-forest'>http://earthenginepartners.appspot.com/science-2013-global-forest</a></p>
+          </p>
+        </div>
+        <div id='fc-loss' class='legend-line'>
+          <span id='fc-loss-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest Loss 2000–2012</span>
+        </div>
+      </div>
+
+      <div id='fc-switcher'>
+        <input type="checkbox" id="fc-check"/>
+        <label for="fc-check">View forest lost between 2000 and 2012</label>
+      </div>
+
+    </div>
     <script>
-    L.mapbox.accessToken = 'pk.eyJ1IjoicGhheWVzIiwiYSI6InNHMlkzQUkifQ.C9wmsbr-8tAtViMNb1wEcA';
-    var map = L.mapbox.map('map', 'phayes.jjf0jnd4');
+      L.mapbox.accessToken = 'pk.eyJ1IjoicGhheWVzIiwiYSI6InNHMlkzQUkifQ.C9wmsbr-8tAtViMNb1wEcA';
+      var map = L.mapbox.map('map', 'phayes.jjf0jnd4');
 
-    //var googleLayer = new L.Google('TERRAIN');
-    //map.addLayer(googleLayer, true);
+      //var googleLayer = new L.Google('TERRAIN');
+      //map.addLayer(googleLayer, true);
 
-    var sei_layer   = L.mapbox.tileLayer('phayes.CVCS_SEI').addTo(map);
-    var pro_layer   = L.mapbox.tileLayer('phayes.CVCS').addTo(map);
+      var sei_layer   = L.mapbox.tileLayer('phayes.CVCS_SEI').addTo(map);
+      var pro_layer   = L.mapbox.tileLayer('phayes.CVCS').addTo(map);
 
-    var sei_grid    = L.mapbox.gridLayer('phayes.CVCS_SEI').addTo(map);
-    var pro_grid    = L.mapbox.gridLayer('phayes.CVCS').addTo(map);
+      var sei_grid    = L.mapbox.gridLayer('phayes.CVCS_SEI').addTo(map);
+      var pro_grid    = L.mapbox.gridLayer('phayes.CVCS').addTo(map);
 
-    var sei_control = L.mapbox.gridControl(sei_grid).addTo(map);
-    var pro_control = L.mapbox.gridControl(pro_grid).addTo(map);
-    
+      var sei_control = L.mapbox.gridControl(sei_grid).addTo(map);
+      var pro_control = L.mapbox.gridControl(pro_grid).addTo(map);
 
+      // Forest Loss map
+      var fl_layer = L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss_alpha/{z}/{x}/{y}.png');
+
+      // Legend interactions
+      (function ($) {
+        $(document).ready(function() {
+          $('#fc-check').change(function() {
+            if ($(this).is(':checked')) {
+              $('#sei-legend').hide();
+              $('#fc-legend').show();
+              
+              map.addLayer(fl_layer);
+              map.removeLayer(sei_layer);
+              map.removeLayer(sei_grid);
+              
+              // Zoom out if we're too far zoomed in
+              if (map.getZoom() > 12) {
+                map.setZoom(12);
+              }
+            }
+            else {
+              $('#sei-legend').show();
+              $('#fc-legend').hide();
+
+              // Remove parks layers so they end-up on top when we re-add them
+              map.removeLayer(pro_layer);
+              map.removeLayer(pro_grid);
+
+              map.addLayer(sei_layer);
+              map.addLayer(pro_layer);
+              map.addLayer(sei_grid);
+              map.addLayer(pro_grid);
+              map.removeLayer(fl_layer);
+            }
+          })
+        });
+      })(jQuery);
     </script>
   </body>
 </html>
