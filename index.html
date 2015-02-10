@@ -46,25 +46,29 @@
       <div id='fc-legend'>
         <div id='fc-desc' class='legend-desc'>
           <p>
-            Results from time-series analysis of 654,178 Landsat images in characterizing forest extent and change, 2000–2012.
-            ‘Forest Loss’ is defined as a stand-replacement disturbance, or a change from a forest to non-forest state.
+            Results from time-series analysis of 654,178 Landsat images in characterizing forest extent and change, 2000–2013. Published by Hansen, Potapov, Moore, Hancher et al.
           </p>
-          <p>Global Forest Change published by Hansen, Potapov, Moore, Hancher et al. </p>
-          <p>
             <a target='_blank' href='http://earthenginepartners.appspot.com/science-2013-global-forest'>
-              http://earthenginepartners.appspot.com/science-2013-global-forest
+              earthenginepartners.appspot.com/science-2013-global-forest
             </a>
-          </p>
-          </p>
         </div>
         <div id='fc-loss' class='legend-line'>
-          <span id='fc-loss-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest Loss 2000–2012</span>
+          <span id='fc-loss-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest Loss 2000–2013</span>
+        </div>
+        <div id='fc-gain' class='legend-line'>
+          <span id='fc-gain-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest Gain 2000–2012</span>
+        </div>
+        <div id='fc-both' class='legend-line'>
+          <span id='fc-both-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest - Both Loss and Gain</span>
+        </div>
+        <div id='fc-both' class='legend-line'>
+          <span id='fc-extent-colourball' class='colourball'>&#9679;</span><span class='legend-text'>Forest - No Change</span>
         </div>
       </div>
 
       <div id='fc-switcher'>
         <input type="checkbox" id="fc-check"/>
-        <label for="fc-check">View forest lost between 2000 and 2012</label>
+        <label for="fc-check">View forest change 2000 - 2014</label>
       </div>
 
     </div>
@@ -85,7 +89,7 @@
       var pro_control = L.mapbox.gridControl(pro_grid).addTo(map);
 
       // Forest Loss map
-      var fl_layer = L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss_alpha/{z}/{x}/{y}.png');
+      var fl_layer = L.tileLayer('http://earthengine.google.org/static/hansen_2014/loss_tree_gain/{z}/{x}/{y}.png');
 
       // Legend interactions
       (function ($) {

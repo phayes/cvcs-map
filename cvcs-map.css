@@ -16,7 +16,7 @@
 
 .legend-text {
 	position: relative;
-	top:2px;
+	top:-1px;
 	margin-left: 5px;
 }
 
@@ -50,6 +50,18 @@
 
 #fc-loss-colourball {
 	color: #ff0000;
+}
+
+#fc-gain-colourball {
+	color: #4600ff;
+}
+
+#fc-both-colourball {
+	color: #ff00fe;
+}
+
+#fc-extent-colourball {
+	color: #00ee16;
 }
 
 #fc-switcher {
