@@ -11,8 +11,18 @@
       outside: 'Directors of the Comox Valley Regional District'
     };
 
+    var locname = {
+      region: 'in the Comox Valley Regional District', 
+      courtenay: 'in Courtenay',
+      comox: 'in Comox',
+      cumberland: 'in Cumberland', 
+      outside: 'outside of the Comox Valley'
+    }
+
     var loc = 'region';
-    var name = '<your-name>';
+    var locstr = $locname['region'];
+    var signatureline = '<your-name-and-address>';
+    var name = "<your-name>";
     var edited = false;
 
     $( document ).ready(function() {
@@ -20,14 +30,22 @@
 
       $('select[name=location]').change(function() {
         if (!edited) {
+
+          // Dear lines
           var findText = locationmap[loc];
           var replaceText = locationmap[$(this).val()];
 
           letter.val(letter.val().replace(findText, replaceText));
           loc = $(this).val();
+
+          // Where I live line
+          var replaceTextLoc = locname[$(this).val()];
+          letter.val(letter.val().replace(locstr, replaceTextLoc));
+          locstr = replaceTextLoc;
         }
       });
 
+      // Replace signature line
       $('input[name=name], input[name=address], input[name=phone]').change(function() {
         if (!edited) {
           var replaceText = $('input[name=name]').val();
@@ -37,6 +55,16 @@
           if ($('input[name=phone]').val()) {
             replaceText += "\n" + $('input[name=phone]').val();
           }
+
+          letter.val(letter.val().replace(signatureline, replaceText));
+          signatureline = replaceText;
+        }
+      });
+
+      // Replace name
+      $('input[name=name]').change(function() {
+        if (!edited) {
+          var replaceText = $('input[name=name]').val();
 
           letter.val(letter.val().replace(name, replaceText));
           name = replaceText;
@@ -129,7 +157,7 @@
       <p><textarea name="letter" rows="30" cols="100">
 Dear Area Directors of the Regional District,
 
-It is with great concern that I write you in regards to the status and protection of sensitive ecosystems in the Comox Valley. A sensitive ecosystem is an ecologically fragile ecosystem that is home to a variety of at-risk species and biological communities. Some examples of sensitive ecosystems in the Comox Valley include terrestrial herbaceous meadows, unique older forests, wetlands and riparian areas. 
+My name is <your-name>, and I live in the Comox Valley Regional District. It is with great concern that I write you in regards to the status and protection of sensitive ecosystems in the Comox Valley. A sensitive ecosystem is an ecologically fragile ecosystem that is home to a variety of at-risk species and biological communities. Some examples of sensitive ecosystems in the Comox Valley include terrestrial herbaceous meadows, unique older forests, wetlands and riparian areas. 
 
 According to the Comox Valley Conservation Strategy, 30% of sensitive ecosystems within the Comox Valley have been lost within the past 10 years. Of those remaining, 63% have been degraded due to development, logging, or other destructive activities. 
 
@@ -139,7 +167,7 @@ Our sensitive ecosystems and forests need stronger protection if we hope to keep
 
 Thank you,
 
-<your-name></textarea></p>
+<your-name-and-address></textarea></p>
     </div>
 
     <p><input type="submit" value="Send Email"></p>
