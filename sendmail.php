@@ -96,7 +96,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	// Add unsubscribe message
-	$letter .= "\n\n\n\n ------------------------ \n This message has been sent as part of a campaign by the Comox Valley Conservation Strategy. To opt-out of all future emails please send an email to patrick.d.hayes@gmail.com . "
+	$letter .= "\n\n\n\n ------------------------ \n This message has been sent as part of a campaign by the Comox Valley Conservation Strategy. To opt-out of all future emails please send an email to patrick.d.hayes@gmail.com . ";
 
 	$email->setText($letter);
 
