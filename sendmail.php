@@ -1,7 +1,7 @@
 <?php
 require_once("./sendgrid-php/sendgrid-php.php");
 
-$grindpass = trim(file_get_contents("./.grindpass"));
+$grindpass = trim(file_get_contents(".htgrindpass"));
 
 $admins = array(
 	'Patrick Hayes <patrick.d.hayes@gmail.com>',
