@@ -58,16 +58,12 @@
 
           letter.val(letter.val().replace(signatureline, replaceText));
           signatureline = replaceText;
-        }
-      });
 
-      // Replace name
-      $('input[name=name]').change(function() {
-        if (!edited) {
-          var replaceText = $('input[name=name]').val();
+          // Now do the name
+          var replaceTextname = $('input[name=name]').val();
 
-          letter.val(letter.val().replace(name, replaceText));
-          name = replaceText;
+          letter.val(letter.val().replace(name, replaceTextname));
+          name = replaceTextname;
         }
       });
 
