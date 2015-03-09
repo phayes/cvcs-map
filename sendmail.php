@@ -104,7 +104,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// Add footer message
 	$letter .= "\n\n\n\n------------------------\nThis message has been sent as part of a campaign by the Comox Valley Conservation Strategy. \n";
-	$letter .= "To Learn more please vist: http://www.cvconservationstrategy.org\n"
+	$letter .= "To Learn more please vist: http://www.cvconservationstrategy.org\n";
 	$letter .= "To opt-out of all future emails please send an email to patrick.d.hayes@gmail.com . ";
 
 	$email->setText($letter);
