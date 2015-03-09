@@ -9,48 +9,22 @@ $admins = array(
 
 $badwords = array("fuck", "shit", "cunt", "asshole", "bitch", "damn", "stupid", "idiot");
 
+// For testing:
 $representatives = array(
 	'region' => array(
-		'Director Edwin Grieve <edwingrieve@shaw.ca>',
-		'Director Rodney Nicol <rodnichol@shaw.ca>',
-		'Director Bruce Jolliffe<bjolliffe@comoxvalleyrd.ca>', 
+		'Patrick Hayes Region <patrick.d.hayes@gmail.com>',
 	), 
 	'courtenay' => array(
-		'Mayor Larry Jangula <ljangula@courtenay.ca>',
-		'Councillor Erik Eriksson <eeriksson@courtenay.ca>',
-		'Councillor David Frisch <dfrisch@courtenay.ca>',
-		'Councillor Doug Hillian <dhillian@courtenay.ca>',
-		'Councillor Rebecca Lennox <rlennox@courtenay.ca>',
-		'Councillor Manno Theos <mtheos@courtenay.ca>',
-		'Councillor Bob Wells <bwells@courtenay.ca>',
+		'Patrick Hayes Courtenay <patrick.d.hayes@gmail.com>',
 	), 
 	'comox' => array(
-		'Mayor Paul Ives <pives@comox.ca>',
-		'Councillor Russ Arnott <rarnott@comox.ca>',
-		'Councillor Ken Grant <kgrant@comox.ca>',
-		'Councillor Marg Grant <mgrant@comox.ca>',
-		'Councillor Hugh MacKinnon <hmackinnon@comox.ca>',
-		'Councillor Barbara Price <bprice@comox.ca>',
-		'Councillor Maureen Swift <mswift@comox.ca>', 
+		'Patrick Hayes Comox <patrick.d.hayes@gmail.com>', 
 	),
 	'cumberland' => array(
-		'Mayor Leslie Baird <mayor.baird@cumberland.ca>',
-		'Councillor Jesse Ketler <councillor.ketler@cumberland.ca>',
-		'Councillor Roger Kishi <councillor.kishi@cumberland.ca>',
-		'Councillor Gwyn Sproule <councillor.sproule@cumberland.ca>',
-		'Councillor Sean Sullivan <councillor.sullivan@cumberland.ca>',
+		'Patrick Hayes Cumberland <patrick.d.hayes@gmail.com>',
 	),
 	'outside' => array(
-		'Director Edwin Grieve <edwingrieve@shaw.ca>',
-		'Director Rodney Nicol <rodnichol@shaw.ca>',
-		'Director Bruce Jolliffe<bjolliffe@comoxvalleyrd.ca>',
-		'Director Ken Grant <kgrant@comox.ca>',
-		'Director Barbara Price <bprice@comox.ca>',
-		'Director Larry Jangula <ljangula@courtenay.ca>',
-		'Director Erik Eriksson <eeriksson@courtenay.ca>',
-		'Director Manno Theos <mtheos@courtenay.ca>',
-		'Director Bob Wells <bwells@courtenay.ca>',
-		'Director Gwyn Sproule <councillor.sproule@cumberland.ca>',
+		'Patrick Hayes Outside <patrick.d.hayes@gmail.com>',
 	)
 );
 
