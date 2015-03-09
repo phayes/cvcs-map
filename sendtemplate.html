@@ -21,7 +21,7 @@
 
     var loc = 'region';
     var locstr = locname[loc];
-    var signatureline = '<your-name-and-address>';
+    var signatureline = '<your-name-and-address>\n';
     var name = "<your-name>";
     var edited = false;
 
@@ -55,15 +55,17 @@
           if ($('input[name=phone]').val()) {
             replaceText += "\n" + $('input[name=phone]').val();
           }
+          // always append a \n on the end
+          replaceText += "\n";
 
           letter.val(letter.val().replace(signatureline, replaceText));
           signatureline = replaceText;
 
           // Now do the name
-          var replaceTextname = $('input[name=name]').val();
+          //var replaceTextname = $('input[name=name]').val();
 
-          letter.val(letter.val().replace(name, replaceTextname));
-          name = replaceTextname;
+          //letter.val(letter.val().replace(name, replaceTextname));
+          //name = replaceTextname;
         }
       });
 
@@ -163,7 +165,8 @@ Our sensitive ecosystems and forests need stronger protection if we hope to keep
 
 Thank you,
 
-<your-name-and-address></textarea></p>
+<your-name-and-address>
+</textarea></p>
     </div>
 
     <p><input type="submit" value="Send Email"></p>
