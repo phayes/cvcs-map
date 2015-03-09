@@ -49,8 +49,6 @@
 
       // Validation
       $('form').submit(function(event) {
-        event.preventDefault();
-
         if (!$('input[name=name]').val()) {
           alert('Please provide your name');
           event.preventDefault();
