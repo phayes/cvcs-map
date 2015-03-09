@@ -1,0 +1,10 @@
+label { 
+	display: inline-block; 
+	width: 120px; 
+	text-align: right;
+	margin:10px 10px 10px 0px;
+}
+
+select, input[type=text] {
+	width: 240px;
+}
