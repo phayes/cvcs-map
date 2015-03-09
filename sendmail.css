@@ -8,3 +8,7 @@ label {
 select, input[type=text] {
 	width: 240px;
 }
+
+textarea {
+	font-size: larger;
+}
