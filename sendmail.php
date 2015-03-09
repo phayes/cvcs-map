@@ -98,8 +98,14 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$email->setSubject('REJECTED: ' . $rejected . ' -- ' . $_POST['subject']);
 	}
 
-	// Add unsubscribe message
-	$letter .= "\n\n\n\n ------------------------ \n This message has been sent as part of a campaign by the Comox Valley Conservation Strategy. To opt-out of all future emails please send an email to patrick.d.hayes@gmail.com . ";
+	// Do a find and replace for potentially missing parts
+	$letter = str_replace('<your-name>', $_POST['name'], $letter);
+    $letter = str_replace('<your-name-and-address>', $_POST['name'], $letter);
+
+	// Add footer message
+	$letter .= "\n\n\n\n------------------------\nThis message has been sent as part of a campaign by the Comox Valley Conservation Strategy. \n";
+	$letter .= "To Learn more please vist: http://www.cvconservationstrategy.org\n"
+	$letter .= "To opt-out of all future emails please send an email to patrick.d.hayes@gmail.com . ";
 
 	$email->setText($letter);
 

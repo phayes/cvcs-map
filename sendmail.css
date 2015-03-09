@@ -10,5 +10,5 @@ select, input[type=text] {
 }
 
 textarea {
-	font-size: larger;
+	font-size: 0.8em;
 }
