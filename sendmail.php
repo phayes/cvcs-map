@@ -60,7 +60,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$letter = $_POST['letter'];
 
-	if (count($letter) < 200) {
+	if (strlen($letter) < 200) {
 		$rejected = "Too Short";
 	}
 
@@ -84,6 +84,9 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		foreach ($representatives[$_POST['location']] as $rep) {
 			$email->addTo($rep);
 		}
+	}
+	else {
+		$email->addTo('Patrick Hayes <patrick.d.hayes@gmail.com>');;
 	}
 
 	$email->setFrom($_POST['email']);
