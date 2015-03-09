@@ -76,7 +76,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$sendgrid = new SendGrid('phayes', $grindpass);
 	$email = new SendGrid\Email();
 
-	foeach ($admins as $admin) {
+	foreach ($admins as $admin) {
 		$email->addBcc($admin);
 	}
 
