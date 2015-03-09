@@ -103,11 +103,11 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$sent = $sendgrid->send($email);
 
 	if (!$sent) {
-		print "Sorry something went wrong sending the email. Please try again."
+		print "Sorry something went wrong sending the email. Please try again.";
 		exit;
 	}
 	else {
-		print "Thank you so much for contacting your elected representative!"
+		print "Thank you so much for contacting your elected representative!";
 		exit;
 	}
 }
