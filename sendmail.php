@@ -1,4 +1,5 @@
 <?php
+
 require_once("./sendgrid-php/sendgrid-php.php");
 
 $grindpass = trim(file_get_contents(".htgrindpass"));
@@ -110,14 +111,15 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$email->setText($letter);
 
+	// This will generate a notice so we turn off error reporting
+	error_reporting(0);
 	$sent = $sendgrid->send($email);
 
 	if (!$sent) {
-		print "Sorry something went wrong sending the email. Please try again.";
+		print "<h4>Sorry something went wrong sending the email. Please try again.</h4>";
 		exit;
 	}
 	else {
-		print "Thank you so much for contacting your elected representative!";
-		exit;
+		print "<h4>Thank you for contacting your elected representative!</h4>";
 	}
 }
