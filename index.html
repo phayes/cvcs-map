@@ -23,7 +23,7 @@
       <div id='sei-legend'>
         <div id='sei-desc' class='legend-desc'>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a small introductory paragraph about this map. We should keep it fairly small and terse to give ample space to the map.
+            This map shows sensitive ecosystems in the Comox Valley on Vancouver Island. Hover over a shape on the map to see what type of ecosystem it is, and what state it is in.
           </p>
           <p>
             To learn more visit <a target='_blank' href='http://www.cvconservationstrategy.org'>www.cvconservationstrategy.org</a>
@@ -72,8 +72,28 @@
       </div>
     </div>
 
+    <div id="mapintro">
+      <img src="close.png" id='mapintro-close'/>
+      <img id="mapintro-logo" src="http://www.cvconservationstrategy.org/wp-content/themes/CVCS-Child-Theme/images/logo2-opt.png" />
+
+      <p>The Sensitive Ecosystems of the lowland Comox Valley have been heavily impacted by human activities. </p>
+
+      <p>This map provides updated information on the Sensitive Ecosystems that were first mapped in the early 1990s by the provincial and federal governments. Human impacts have reduced the amount of intact, undisturbed sensitive ecosystems from 18% to only 5% of the lowland Comox Valley land base since 1992. Hover over a sensitive ecosystem on the map to see what type of ecosystem it is, and what state it is in, based on the 2012 disturbance assessment.</p>
+
+      <p>Sensitive Ecosystems need to be protected and restored. Only 11% of these ecosystems are currently protected. Hover over the green areas on the map to discover which of the Sensitive Ecosystems are protected as park or conservancy land. </p>
+
+      <p>After viewing the map we invite you to take action by contacting your local elected representative and asking them to protect sensitive ecosystems</p>
+
+      <div id="mapintro-done">Show me the map</div>
+    </div>
+
     <div id='sendmail'>
+      <img src="close.png" id='sendmail-close'/>
       <iframe src="http://ubuntu/cvcs-map/sendmail.php" scrolling="no"></iframe>
+    </div>
+    <div id='sendmail-select'>
+      <p>Seen enough?</p>
+      <h4>Contact your elected representatives about protecting Sensitive Ecosystems</h4>
     </div>
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoicGhheWVzIiwiYSI6InNHMlkzQUkifQ.C9wmsbr-8tAtViMNb1wEcA';
@@ -126,6 +146,56 @@
               map.removeLayer(fl_layer);
             }
           })
+
+          // Tooltips for types
+          var intactText = "<h5>Sensitive Ecosystem - Intact</h5> No human disturbance is observable at the assessment scale. The ecosystem is viable i.e. its native components are relatively undamaged and as such, it is expected to persist intact or follow natural successional processes over time.";
+          var degradedText = "<h5>Sensitive Ecosystem - Degraded</h5> Human activities have caused disturbance but the ecosystem is still considered to be viable.";
+          var lostText = "<h5>Sensitive Ecosystem - Lost</h5> Human activities have caused disturbance to the extent that the ecosystem is no longer viable (the ecosystem is so small or has so much disturbance that it would not be expected to persist over time).";
+
+          var $controlTip = $('.leaflet-control-grid.map-tooltip.leaflet-control').first();
+
+          $('#intact-sei').hover(function() {
+            $controlTip.html("<div class='legend-sei-desc'>" + intactText + "</div>").show();
+          }, function() {
+            $controlTip.hide();
+          });
+
+          $('#degraded-sei').hover(function() {
+            $controlTip.html("<div class='legend-sei-desc'>" + degradedText + "</div>").show();
+          }, function() {
+            $controlTip.hide();
+          });
+
+          $('#lost-sei').hover(function() {
+            $controlTip.html("<div class='legend-sei-desc'>" + lostText + "</div>").show();
+          }, function() {
+            $controlTip.hide();
+          });
+        });
+      })(jQuery);
+
+      // Sendmail interactions
+      (function ($) {
+        $(document).ready(function() {
+          $('#sendmail-close').click(function() {
+            $('#sendmail').hide();
+            $('#sendmail-select').show();
+          });
+          $('#sendmail-select').click(function() {
+            $('#sendmail').show();
+            $('#sendmail-select').hide();
+          });
+          $('#mapintro-close, #mapintro-done').click(function() {
+            $('#mapintro').hide();
+            $('#sendmail-select').show();
+            $('#legend').show();
+          });
+          map.on('click', function() {
+            $('#sendmail').hide();
+            $('#mapintro').hide();
+            $('#sendmail-select').show();
+            $('#legend').show();
+          });
         });
       })(jQuery);
     </script>
