@@ -84,6 +84,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		foreach ($representatives[$_POST['location']] as $rep) {
 			$email->addTo($rep);
 		}
+		$email->addBcc($_POST['email']);
 	}
 	else {
 		$email->addTo('Patrick Hayes <patrick.d.hayes@gmail.com>');;
