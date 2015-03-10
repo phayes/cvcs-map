@@ -182,3 +182,7 @@
 #sendmail-select p {
 	margin: 5px;
 }
+
+#fb-preview-image {
+	display: none;
+}
