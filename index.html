@@ -116,6 +116,9 @@
       // Forest Loss map
       var fl_layer = L.tileLayer('http://earthengine.google.org/static/hansen_2014/loss_tree_gain/{z}/{x}/{y}.png');
 
+      // Scale bar
+      L.control.scale().addTo(map);
+
       // Legend interactions
       (function ($) {
         $(document).ready(function() {
