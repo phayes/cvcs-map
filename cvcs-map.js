@@ -1,5 +1,6 @@
-// Load the map
 $(document).ready(function() {
+  // Load the map
+  // -------------------
   L.mapbox.accessToken = 'pk.eyJ1IjoicGhheWVzIiwiYSI6InNHMlkzQUkifQ.C9wmsbr-8tAtViMNb1wEcA';
   var map = L.mapbox.map('map', 'phayes.jjf0jnd4');
 
@@ -20,10 +21,12 @@ $(document).ready(function() {
 
   // Scale bar
   L.control.scale().addTo(map);
-});
 
-// Legend interactions
-$(document).ready(function() {
+
+
+
+  // Legend interactions
+  // -------------------
   $('#fc-check').change(function() {
     if ($(this).is(':checked')) {
       $('#sei-legend').hide();
@@ -78,10 +81,12 @@ $(document).ready(function() {
   }, function() {
     $controlTip.hide();
   });
-});
 
-// Sendmail interactions
-$(document).ready(function() {
+
+
+
+  // Sendmail interactions
+  // ---------------------
   $('#sendmail-close').click(function() {
     $('#sendmail').hide();
     $('#sendmail-select').show();
@@ -101,4 +106,6 @@ $(document).ready(function() {
     $('#sendmail-select').show();
     $('#legend').show();
   });
+
 });
+
