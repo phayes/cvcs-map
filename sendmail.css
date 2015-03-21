@@ -18,8 +18,9 @@ label[for=to] {
 }
 
 #helptext {
-	width: 350px;
+	width: 320px;
 	float:right;
+	margin-right: 62px;
 }
 
 #helptext h4 {
