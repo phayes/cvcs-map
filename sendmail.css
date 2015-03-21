@@ -9,6 +9,6 @@ select, input[type=text] {
 	width: 240px;
 }
 
-textarea {
+#letter {
 	font-size: 0.8em;
 }
