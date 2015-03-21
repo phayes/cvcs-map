@@ -12,3 +12,24 @@ select, input[type=text] {
 #letter {
 	font-size: 0.8em;
 }
+
+label[for=to] {
+	vertical-align: top;	
+}
+
+#helptext {
+	width: 350px;
+	float:right;
+}
+
+#helptext h4 {
+	margin-top: 5px;
+}
+
+#helptext p:last-child {
+	margin-bottom: 0px;
+}
+
+#helptext p {
+	font-size: 0.9em;
+}

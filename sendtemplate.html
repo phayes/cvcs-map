@@ -30,6 +30,51 @@
       outside: 'outside of the Comox Valley'
     }
 
+    var representatives = {
+      'region' : [
+        'Director Edwin Grieve',
+        'Director Rodney Nicol',
+        'Director Bruce Jolliffe' 
+      ], 
+      'courtenay' : [
+        'Mayor Larry Jangula',
+        'Councillor Erik Eriksson',
+        'Councillor David Frisch',
+        'Councillor Doug Hillian',
+        'Councillor Rebecca Lennox',
+        'Councillor Manno Theos',
+        'Councillor Bob Wells'
+      ], 
+      'comox' : [
+        'Mayor Paul Ives',
+        'Councillor Russ Arnott',
+        'Councillor Ken Grant',
+        'Councillor Marg Grant',
+        'Councillor Hugh MacKinnon',
+        'Councillor Barbara Price',
+        'Councillor Maureen Swift'
+      ], 
+      'cumberland' : [
+        'Mayor Leslie Baird',
+        'Councillor Jesse Ketler',
+        'Councillor Roger Kishi',
+        'Councillor Gwyn Sproule',
+        'Councillor Sean Sullivan'
+      ], 
+      'outside' : [
+        'Director Edwin Grieve',
+        'Director Rodney Nicol',
+        'Director Bruce Jolliffe',
+        'Director Ken Grant',
+        'Director Barbara Price',
+        'Director Larry Jangula',
+        'Director Erik Eriksson',
+        'Director Manno Theos',
+        'Director Bob Wells',
+        'Director Gwyn Sproule'
+      ]
+    }
+
     var loc = 'region';
     var locstr = locname[loc];
     var signatureline = '<your-name-and-address>\n';
@@ -53,6 +98,9 @@
           var replaceTextLoc = locname[$(this).val()];
           letter.val(letter.val().replace(locstr, replaceTextLoc));
           locstr = replaceTextLoc;
+
+          // To Box
+          $("#to").val(representatives[$(this).val()].join(", "));
         }
       });
 
@@ -125,6 +173,14 @@
 </head>
 <body>
 
+<div id="helptext">
+  <h4>Take action and contact your elected representatives</h4>
+  <p>Please use this form to send an email to your local elected representatives and ask them to protect sensitive ecosystems in the Comox Valley.  <p>
+
+  <p>We've provided a default letter that you can send as-is or embellish to make it your own. Or you can write an email using your own words entirely. It's important to ensure that local politicians know that their consituents are concerned about ecosystem degradation in the Comox Valley and want them to take action.</p>
+</div>
+
+
 <form action="sendmail.php" method="post" id="sendmail">
     <div>
       <label for="name">Name</label>
@@ -164,8 +220,7 @@
 
     <div>
       <label for="to">To</label>
-      <textarea name="to" disabled="disabled">
-      </textarea>
+      <textarea name="to" disabled="disabled" cols="94" id="to">Director Edwin Grieve, Director Rodney Nicol, Director Bruce Jolliffe</textarea>
     </div>
 
     <div>
