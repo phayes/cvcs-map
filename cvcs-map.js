@@ -2,7 +2,9 @@ $(document).ready(function() {
   // Load the map
   // -------------------
   L.mapbox.accessToken = 'pk.eyJ1IjoicGhheWVzIiwiYSI6InNHMlkzQUkifQ.C9wmsbr-8tAtViMNb1wEcA';
-  var map = L.mapbox.map('map', 'phayes.jjf0jnd4');
+  var map = L.mapbox.map('map', 'phayes.jjf0jnd4', {minZoom: 10});
+
+  map.setMaxBounds(L.latLngBounds(L.latLng(49.2, -125.8), L.latLng(50, -124.4)));
 
   //var googleLayer = new L.Google('TERRAIN');
   //map.addLayer(googleLayer, true);
@@ -22,44 +24,67 @@ $(document).ready(function() {
   // Scale bar
   L.control.scale().addTo(map);
 
-
-
-
   // Legend interactions
   // -------------------
+  $('#legend').hover(function(event) {
+    $('.map-tooltip').hide();
+    event.stopPropagation();
+  });
+
+  var showFC = function() {
+    $('#sei-legend').hide();
+    $('#fc-legend').show();
+    
+    map.addLayer(fl_layer);
+    map.removeLayer(sei_layer);
+    map.removeLayer(sei_grid);
+    map.removeLayer(pro_layer);
+    map.removeLayer(pro_grid);
+
+    $('.map-tooltip').hide();
+    
+    // Zoom out if we're too far zoomed in
+    if (map.getZoom() > 12) {
+      map.setZoom(12);
+    }
+    $('#fc-check').prop('checked', true);
+  }
+
+  var hideFC = function() {
+    $('#sei-legend').show();
+    $('#fc-legend').hide();
+
+    map.addLayer(sei_layer);
+    map.addLayer(pro_layer);
+    map.addLayer(sei_grid);
+    map.addLayer(pro_grid);
+    map.removeLayer(fl_layer);
+    $('#fc-check').prop('checked', false);
+  }
+
   $('#fc-check').change(function() {
+    history.pushState({showfc: $(this).is(':checked')});
     if ($(this).is(':checked')) {
-      $('#sei-legend').hide();
-      $('#fc-legend').show();
-      
-      map.addLayer(fl_layer);
-      map.removeLayer(sei_layer);
-      map.removeLayer(sei_grid);
-      
-      // Zoom out if we're too far zoomed in
-      if (map.getZoom() > 12) {
-        map.setZoom(12);
-      }
+      showFC();
     }
     else {
-      $('#sei-legend').show();
-      $('#fc-legend').hide();
-
-      // Remove parks layers so they end-up on top when we re-add them
-      map.removeLayer(pro_layer);
-      map.removeLayer(pro_grid);
-
-      map.addLayer(sei_layer);
-      map.addLayer(pro_layer);
-      map.addLayer(sei_grid);
-      map.addLayer(pro_grid);
-      map.removeLayer(fl_layer);
+      hideFC();
     }
   });
 
+  // Hanndle popstate for forward / back buttons
+  window.onpopstate = function(event) {
+    if (event.state && event.state.showfc) {
+      showFC();
+    }
+    else {
+      hideFC();
+    }
+  };
+
   // Tooltips for types
   var intactText = "<h5>Sensitive Ecosystem - Intact</h5> No human disturbance is observable at the assessment scale. The ecosystem is viable i.e. its native components are relatively undamaged and as such, it is expected to persist intact or follow natural successional processes over time.";
-  var degradedText = "<h5>Sensitive Ecosystem - Degraded</h5> Human activities have caused disturbance but the ecosystem is still considered to be viable.";
+  var degradedText = "<h5>Sensitive Ecosystem - Degraded</h5> Human activities have caused disturbance but the ecosystem is still considered to be viable. ";
   var lostText = "<h5>Sensitive Ecosystem - Lost</h5> Human activities have caused disturbance to the extent that the ecosystem is no longer viable (the ecosystem is so small or has so much disturbance that it would not be expected to persist over time).";
 
   var $controlTip = $('.leaflet-control-grid.map-tooltip.leaflet-control').first();
@@ -87,6 +112,18 @@ $(document).ready(function() {
 
   // Sendmail interactions
   // ---------------------
+  $('#sendmail-select').hover(
+  function() {
+    $(this).animate({
+      height: "+=10", 
+    });
+  },
+  function() {
+    $(this).animate({
+      height: "-=10", 
+    });
+  } 
+  );
   $('#sendmail-close').click(function() {
     $('#sendmail').hide();
     $('#sendmail-select').show();

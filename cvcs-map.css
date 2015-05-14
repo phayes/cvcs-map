@@ -2,7 +2,7 @@
 	position:absolute;
 	bottom:20px;
 	right:20px;
-	height:300px;
+	height:320px;
 	width:300px;
 	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: 3px 3px 3px #888888;
@@ -18,7 +18,7 @@
 
 .legend-text {
 	position: relative;
-	top:-1px;
+	top:2px;
 	margin-left: 5px;
 }
 
@@ -54,6 +54,10 @@
 	color: #eca731;
 }
 
+#boundary-colourball {
+	color: black;
+}
+
 #lost-sei-colourball {
 	color: #ce4237;
 }
@@ -72,6 +76,10 @@
 
 #fc-extent-colourball {
 	color: #00ee16;
+}
+
+#fc-none-colourball {
+	color: black;
 }
 
 #fc-switcher {
@@ -102,7 +110,7 @@
 
 #mapintro {
     width: 800px;
-    height:400px;
+    height:450px;
 	-webkit-box-shadow: 10px 10px 60px -8px rgba(0,0,0,1);
 	-moz-box-shadow: 10px 10px 60px -8px rgba(0,0,0,1);
 	box-shadow: 10px 10px 60px -8px rgba(0,0,0,1);
@@ -162,22 +170,28 @@
 
 #sendmail-select {
 	width: 800px;
-    height:50px;
-    border: 1px solid gray;
+    height:35px;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
     position: fixed;
     bottom: 0px;
     left: 10%;
     z-index: 200;
-    background-color: white;
-    opacity: 0.92;
+    background-color: #357ae8;
+    background-image: -webkit-linear-gradient(top,#4d90fe,#357ae8);
+    opacity: 1;
     text-align: center;
     cursor: pointer;
     display: none;
+    font-family: "Lato", sans-serif;
+    border-radius: 3px;
 }
 
-#sendmail-select h4 {
-	margin-top: 0px;
-	color: blue;
+#sendmail-select h3 {
+	margin-top: 6px;
+	color: white;
+	font-size: 1.2em;
 }
 
 #sendmail-select p {
