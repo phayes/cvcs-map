@@ -63,7 +63,7 @@ $(document).ready(function() {
   }
 
   $('#fc-check').change(function() {
-    history.pushState({showfc: $(this).is(':checked')}, null, window.location.pathname + '?showfc=' . $(this).is(':checked'));
+    history.pushState({showfc: $(this).is(':checked')}, null, window.location.pathname + '?showfc=' + $(this).is(':checked'));
     if ($(this).is(':checked')) {
       showFC();
     }
